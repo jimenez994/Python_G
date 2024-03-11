@@ -33,9 +33,10 @@ while is_correct:
                                    prompt="What's another state name?").strip().capitalize()
     # exit amd save missed states
     if input_state == "Exit":
-        for state in states:
-            if state not in guessed_states:
-                missing_states.append(state)
+        missing_states = [state for state in states if state not in guessed_states]
+        # for state in states:
+        #     if state not in guessed_states:
+        #         missing_states.append(state)
         new_data = pandas.DataFrame(missing_states)
         new_data.to_csv("states_to_learn.csv")
         is_correct = False
